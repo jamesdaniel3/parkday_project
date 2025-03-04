@@ -6,6 +6,8 @@ app.use((ctx) => {
   ctx.body = "Hello world";
 });
 
-app.listen(5005, () => {
-  console.log(`Application running on port 5005`);
+const PORT = process.env.PORT || 5005;
+
+app.listen(PORT, () => {
+  console.log(`Application running on port ${PORT}`);
 });
