@@ -4,42 +4,36 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const Koa = require("koa");
-let db;
+const Router = require("koa-router");
 
-// Try to require db.js but catch any errors
+// Create a new app and router
+const app = new Koa();
+const router = new Router();
+
+// Import db only if needed for specific routes
+let db;
 try {
-  console.log("Attempting to load the database module...");
   db = require("./db");
   console.log("Database module loaded successfully");
 } catch (error) {
-  console.error("CRITICAL ERROR loading database module:", error);
-  // Create a dummy db module to prevent crashes
+  console.error("Error loading database module:", error.message);
+  // Create dummy db to prevent crashes
   db = {
     query: async () => {
-      throw new Error("Database module failed to load");
+      throw new Error("Database not available");
     },
-    pool: {
-      end: (callback) => callback(),
-    },
+    pool: { end: (cb) => cb && cb() },
   };
 }
 
-const app = new Koa();
-
-// Request logging middleware
+// Log all requests
 app.use(async (ctx, next) => {
-  console.log(`${new Date().toISOString()} - ${ctx.method} ${ctx.url}`);
-  const start = Date.now();
+  console.log(`Request received: ${ctx.method} ${ctx.url}`);
   await next();
-  const ms = Date.now() - start;
-  console.log(
-    `${new Date().toISOString()} - ${ctx.method} ${ctx.url} - ${
-      ctx.status
-    } - ${ms}ms`
-  );
+  console.log(`Response sent: ${ctx.status}`);
 });
 
-// Add error handling
+// Error handler
 app.use(async (ctx, next) => {
   try {
     await next();
@@ -47,66 +41,51 @@ app.use(async (ctx, next) => {
     console.error("Server error:", err);
     ctx.status = err.status || 500;
     ctx.body = {
-      message: "An error occurred",
-      error: err.message,
+      status: "error",
+      message: err.message || "An error occurred",
     };
   }
 });
 
-// Health check endpoint
-app.use(async (ctx, next) => {
-  if (ctx.path === "/health") {
-    console.log("Handling /health endpoint");
-    ctx.body = { status: "ok" };
-    return; // Stops here for /health
-  }
-  await next(); // Continues to next middleware for other routes
+// Define routes
+router.get("/", (ctx) => {
+  ctx.body = "Hello world";
 });
 
-// Database test endpoint
-app.use(async (ctx, next) => {
-  if (ctx.path === "/db-test") {
-    console.log("Handling /db-test endpoint");
-    try {
-      console.log("Attempting database query...");
-      const result = await db.query("SELECT NOW() as current_time");
-      console.log("Database query successful:", result.rows[0]);
-      ctx.body = {
-        status: "Database connection successful",
-        timestamp: result.rows[0].current_time,
-      };
-    } catch (error) {
-      console.error("Database connection error:", error);
-      ctx.status = 500;
-      ctx.body = {
-        status: "Database connection failed",
-        error: error.message,
-      };
-    }
-    console.log("DB-test response body set to:", ctx.body);
-    return; // Stops here for /db-test
-  }
-  await next(); // Continues to next middleware for other routes
+router.get("/health", (ctx) => {
+  ctx.body = { status: "ok" };
 });
 
-// Main route - only runs if no other route handled the request
+router.get("/db-test", async (ctx) => {
+  try {
+    console.log("Attempting database query");
+    const result = await db.query("SELECT NOW() as current_time");
+    console.log("Database query result:", result.rows[0]);
+    ctx.body = {
+      status: "Database connection successful",
+      timestamp: result.rows[0].current_time,
+    };
+  } catch (error) {
+    console.error("Database error:", error);
+    ctx.status = 500;
+    ctx.body = {
+      status: "error",
+      message: "Database connection failed: " + error.message,
+    };
+  }
+});
+
+// Add routes to the application
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+// 404 handler for routes not defined
 app.use((ctx) => {
-  console.log("Reached catch-all route handler");
-  // Check if a response has already been set by any previous middleware
-  if (!ctx.body) {
-    console.log("No response body set by previous middleware");
-    if (ctx.path === "/") {
-      ctx.body = "Hello world";
-    } else {
-      ctx.status = 404;
-      ctx.body = {
-        status: "error",
-        message: "Route not found",
-      };
-    }
-  } else {
-    console.log("Response already set to:", ctx.body);
-  }
+  ctx.status = 404;
+  ctx.body = {
+    status: "error",
+    message: "Route not found",
+  };
 });
 
 const PORT = process.env.PORT || 8080;
@@ -120,12 +99,10 @@ const server = app.listen(PORT, () => {
 const shutdown = () => {
   console.log("Shutting down gracefully...");
 
-  // Close the database pool
+  // Close the database pool if it exists
   if (db && db.pool) {
     db.pool.end(() => {
       console.log("Database connections closed");
-
-      // Then close the server
       server.close(() => {
         console.log("Server closed");
         process.exit(0);
