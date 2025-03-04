@@ -21,16 +21,16 @@ app.use(async (ctx, next) => {
   }
 });
 
-// Add a health check endpoint
+// Health check endpoint
 app.use(async (ctx, next) => {
   if (ctx.path === "/health") {
     ctx.body = { status: "ok" };
-    return;
+    return; // Stops here for /health
   }
-  await next();
+  await next(); // Continues to next middleware for other routes
 });
 
-// Add a database test endpoint
+// Database test endpoint
 app.use(async (ctx, next) => {
   if (ctx.path === "/db-test") {
     try {
@@ -47,20 +47,32 @@ app.use(async (ctx, next) => {
         error: error.message,
       };
     }
-    return;
+    return; // Stops here for /db-test
   }
-  await next();
+  await next(); // Continues to next middleware for other routes
 });
 
-// Main route
+// Main route - only runs if no other route handled the request
 app.use((ctx) => {
-  ctx.body = "Hello world";
+  // Check if a response has already been set by any previous middleware
+  if (!ctx.body) {
+    if (ctx.path === "/") {
+      ctx.body = "Hello world";
+    } else {
+      ctx.status = 404;
+      ctx.body = {
+        status: "error",
+        message: "Route not found",
+      };
+    }
+  }
 });
 
 const PORT = process.env.PORT || 8080;
 
 const server = app.listen(PORT, () => {
   console.log(`Application running on port ${PORT}`);
+  console.log(`Routes available: /, /health, /db-test`);
 });
 
 // Handle termination signals
