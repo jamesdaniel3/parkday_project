@@ -48,10 +48,6 @@ app.use(async (ctx, next) => {
 });
 
 // Define routes
-router.get("/", (ctx) => {
-  ctx.body = "Hello world";
-});
-
 router.get("/health", (ctx) => {
   ctx.body = { status: "ok" };
 });
@@ -73,6 +69,10 @@ router.get("/db-test", async (ctx) => {
       message: "Database connection failed: " + error.message,
     };
   }
+});
+
+router.get("/", (ctx) => {
+  ctx.body = "Hello world";
 });
 
 // Add routes to the application
