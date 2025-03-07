@@ -48,9 +48,9 @@ app.use(async (ctx, next) => {
 });
 
 // Define routes
-router.get("/api/hello", (ctx) => {
-  ctx.body = "Hello world";
-});
+// router.get("/api/hello", (ctx) => {
+//   ctx.body = "Hello world";
+// });
 
 router.get("/api/health", (ctx) => {
   ctx.body = { status: "ok" };
