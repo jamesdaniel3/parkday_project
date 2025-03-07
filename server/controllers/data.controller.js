@@ -17,4 +17,14 @@ module.exports = {
       ctx.throw(500, error.message);
     }
   },
+  async getMenuItems(ctx) {
+    try {
+      const restaurantId = ctx.params.restaurantId;
+
+      const data = await dataService.getMenuItems(restaurantId);
+      ctx.body = { status: "success", data };
+    } catch (error) {
+      ctx.throw(500, error.message);
+    }
+  },
 };

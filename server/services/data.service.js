@@ -21,5 +21,17 @@ module.exports = {
     ]);
     return result.rows;
   },
-  // Add more service methods as needed
+  async getMenuItems(restaurantId) {
+    const day = new Date().getDay();
+    const time = new Date().toTimeString().split(" ")[0];
+
+    const result = await db.query(queries.getMenuItems, [
+      day,
+      restaurantId,
+      time,
+      time,
+      time,
+    ]);
+    return result.rows;
+  },
 };
