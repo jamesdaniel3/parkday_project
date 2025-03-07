@@ -4,7 +4,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:with-migrate": "npm run migrate && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "knex migrate:latest",
+    "migrate:dev": "knex migrate:latest --env development",
+    "migrate:prod": "knex migrate:latest --env production",
+    "rollback": "knex migrate:rollback",
+    "make:migration": "knex migrate:make"
   },
   "keywords": [],
   "author": "",
@@ -12,10 +18,11 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.3.1",
+    "knex": "^3.1.0",
     "koa": "^2.16.0",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^12.0.0",
-    "pg": "^8.11.3"
+    "pg": "^8.13.3"
   },
   "engines": {
     "node": ">=18.0.0"
