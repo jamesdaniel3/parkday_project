@@ -1,5 +1,6 @@
+import MenuCard from "@/components/MenuCard";
 import React, { useEffect, useState } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, ScrollView, TouchableOpacity } from "react-native";
 
 const MenuScreen = ({ route, navigation }: any) => {
   const { restaurantId } = route.params;
@@ -32,10 +33,26 @@ const MenuScreen = ({ route, navigation }: any) => {
   }, []);
 
   return (
-    <View>
-      <Text>This is the menu screen</Text>
+    <ScrollView>
       <Button title="Go Back" onPress={() => navigation.goBack()} />
-    </View>
+      {menuItems.map((menuItem) => (
+        <TouchableOpacity key={menuItem.id}>
+          <MenuCard
+            id={menuItem.id}
+            name={menuItem.name}
+            isVegetarian={menuItem.is_vegetarian}
+            isKeto={menuItem.is_keto}
+            isVegan={menuItem.is_vegan}
+            isDairyFree={menuItem.is_dairy_free}
+            isPaleo={menuItem.is_paleo}
+            description={menuItem.description}
+            imageUrl={menuItem.image_url}
+            priceUsd={menuItem.price_usd}
+            ingredients={menuItem.ingredients}
+          />
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
   );
 };
 

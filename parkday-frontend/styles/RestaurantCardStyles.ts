@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 7.5,
     marginBottom: 7.5,
-    elevation: 5,
     height: "90%",
   },
   logo: {

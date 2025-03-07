@@ -9,11 +9,13 @@ export interface RestaurantCardProps {
 export interface MenuCardProps {
   id: number;
   name: string;
-  is_vegetarian: boolean;
-  is_keto: boolean;
-  is_vegan: boolean;
-  is_dairy_free: boolean;
-  is_paleo: boolean;
+  isVegetarian: boolean;
+  isKeto: boolean;
+  isVegan: boolean;
+  isDairyFree: boolean;
+  isPaleo: boolean;
   description?: string;
-  image_url?: string;
+  imageUrl?: string;
+  priceUsd?: number;
+  ingredients?: string;
 }
