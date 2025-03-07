@@ -1,6 +1,6 @@
 const Router = require("koa-router");
 const router = new Router({ prefix: "/api/test" });
-const db = require("../database");
+const db = require("../database_logic");
 
 router.get("/health", (ctx) => {
   ctx.body = { status: "ok" };

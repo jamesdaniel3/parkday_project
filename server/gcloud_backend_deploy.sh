@@ -23,7 +23,9 @@ docker push gcr.io/parkday-project/github.com:$TAG
 
 # Deploy to Cloud Run
 echo "Deploying to Cloud Run..."
-gcloud run deploy parkday-project --image gcr.io/parkday-project/github.com:$TAG
+gcloud run deploy parkday-project \
+  --image gcr.io/parkday-project/github.com:$TAG \
+  --add-cloudsql-instances=parkday-project:us-east4:prod-postgres
 
 echo "Deployment completed successfully!"
 echo "Deployed image: gcr.io/parkday-project/github.com:$TAG"

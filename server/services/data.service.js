@@ -1,21 +1,37 @@
-const db = require("../database");
-const queries = require("../database/queries/users.queries");
+const db = require("../database_logic");
+const queries = require("../database_logic/queries/users.queries");
 
 module.exports = {
-  async getAllData() {
-    const result = await db.query(queries.getAllUsers);
+  async getAllRestaurants() {
+    const result = await db.query(queries.getAllRestaurants);
     return result.rows;
   },
+  async getOpenRestaurants() {
+    const dayOfWeek = new Date().getDay();
+    const currentTime = new Date().toTimeString().split(" ")[0];
 
-  async getDataById(id) {
-    const result = await db.query(queries.getUserById, [id]);
-    return result.rows[0];
-  },
+    console.log(dayOfWeek);
+    console.log(currentTime);
 
-  async createData(data) {
-    const { name, email } = data;
-    const result = await db.query(queries.createUser, [name, email]);
-    return result.rows[0];
+    const result = await db.query(queries.getOpenRestaurants, [
+      dayOfWeek,
+      currentTime,
+      currentTime,
+      currentTime,
+    ]);
+    return result.rows;
   },
-  // Add more service methods as needed
+  async getMenuItems(restaurantId) {
+    const day = new Date().getDay();
+    const time = new Date().toTimeString().split(" ")[0];
+
+    const result = await db.query(queries.getMenuItems, [
+      day,
+      restaurantId,
+      time,
+      time,
+      time,
+    ]);
+    return result.rows;
+  },
 };
