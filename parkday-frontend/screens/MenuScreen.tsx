@@ -1,6 +1,6 @@
 import MenuCard from "@/components/MenuCard";
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, ScrollView, TouchableOpacity } from "react-native";
+import { Button, ScrollView, TouchableOpacity } from "react-native";
 
 const MenuScreen = ({ route, navigation }: any) => {
   const { restaurantId } = route.params;
