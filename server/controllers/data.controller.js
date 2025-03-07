@@ -10,4 +10,12 @@ module.exports = {
   //       ctx.throw(500, error.message);
   //     }
   //   },
+  async getAllRestaurants(ctx) {
+    try {
+      const data = await dataService.getAllRestaurants();
+      ctx.body = { status: "success", data };
+    } catch (error) {
+      ctx.throw(500, error.message);
+    }
+  },
 };
