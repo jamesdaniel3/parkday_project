@@ -1,15 +1,21 @@
-import { Text, View } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "../screens/HomeScreen";
+import MenuScreen from "../screens/MenuScreen";
 
-export default function Index() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{ headerShown: false }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Menu" component={MenuScreen} />
+    </Stack.Navigator>
   );
-}
+};
+
+export default App;
