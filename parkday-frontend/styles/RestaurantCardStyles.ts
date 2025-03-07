@@ -4,8 +4,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: "1%",
     borderRadius: 20,
     backgroundColor: "#FAF7E4",
     marginLeft: 15,
@@ -13,7 +12,7 @@ const styles = StyleSheet.create({
     marginTop: 7.5,
     marginBottom: 7.5,
     elevation: 5,
-    height: "60%",
+    height: "90%",
   },
   logo: {
     width: 50,
