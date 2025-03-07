@@ -48,15 +48,15 @@ app.use(async (ctx, next) => {
 });
 
 // Define routes
-router.get("/hello", (ctx) => {
+router.get("/api/hello", (ctx) => {
   ctx.body = "Hello world";
 });
 
-router.get("/health", (ctx) => {
+router.get("/api/health", (ctx) => {
   ctx.body = { status: "ok" };
 });
 
-router.get("/db-test", async (ctx) => {
+router.get("/api/db-test", async (ctx) => {
   try {
     console.log("Attempting database query");
     const result = await db.query("SELECT NOW() as current_time");
