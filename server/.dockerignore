@@ -6,3 +6,4 @@ Dockerfile
 .github
 .gitignore
 .env
+gloud_backup_deploy.sh

@@ -10,6 +10,7 @@ COPY package*.json ./
 RUN npm install
 
 # Bundle app source
+ARG CACHEBUST=$(date +%s)
 COPY . .
 
 ENV PORT=8080
