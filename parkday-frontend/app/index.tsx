@@ -1,15 +1,25 @@
-import { Text, View } from "react-native";
+import React from "react";
+import { ScrollView } from "react-native";
+import RestaurantCard from "../components/RestaurantCard";
 
-export default function Index() {
+const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <ScrollView>
+      <RestaurantCard
+        id={1}
+        name="Delicious Pizza"
+        description="The best pizza in town!"
+        logoUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Superman_shield.svg/1200px-Superman_shield.svg.png"
+        storefrontUrl="https://deliciouspizza.com"
+      />
+      <RestaurantCard
+        id={2}
+        name="Sushi World"
+        description="Fresh sushi and sashimi."
+        logoUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Superman_shield.svg/1200px-Superman_shield.svg.png"
+      />
+    </ScrollView>
   );
-}
+};
+
+export default App;
