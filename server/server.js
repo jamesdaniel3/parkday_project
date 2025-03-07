@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const Koa = require("koa");
 const bodyParser = require("koa-bodyparser");
-const db = require("./database");
+const db = require("./database_logic");
 const routes = require("./routes");
 const loggingMiddleware = require("./middlewares/logging.middleware");
 const errorMiddleware = require("./middlewares/error.middleware");

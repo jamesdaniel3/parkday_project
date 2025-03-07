@@ -1,5 +1,5 @@
-const db = require("../database");
-const queries = require("../database/queries/users.queries");
+const db = require("../database_logic");
+const queries = require("../database_logic/queries/users.queries");
 
 module.exports = {
   async getAllData() {
