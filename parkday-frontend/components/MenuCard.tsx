@@ -3,11 +3,11 @@ import { MenuCardProps } from "@/types/types";
 const MenuCard: React.FC<MenuCardProps> = ({
   id,
   name,
-  isVegetarian,
-  isKeto,
-  isVegan,
-  isDairyFree,
-  isPaleo,
+  is_vegetarian,
+  is_keto,
+  is_vegan,
+  is_dairy_free,
+  is_paleo,
   description,
   image_url,
 }) => {
