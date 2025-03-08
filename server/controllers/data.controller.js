@@ -27,4 +27,28 @@ module.exports = {
       ctx.throw(500, error.message);
     }
   },
+  async addRestaurant(ctx) {
+    try {
+      const restaurantData = ctx.request.body;
+
+      // Validate that name is provided
+      if (!restaurantData.name) {
+        ctx.status = 400;
+        ctx.body = {
+          status: "error",
+          message: "Restaurant name is required",
+        };
+        return;
+      }
+
+      const newRestaurantId = await dataService.addRestaurant(restaurantData);
+      ctx.status = 201; // Created
+      ctx.body = {
+        status: "success",
+        data: { id: newRestaurantId },
+      };
+    } catch (error) {
+      ctx.throw(500, error.message);
+    }
+  },
 };

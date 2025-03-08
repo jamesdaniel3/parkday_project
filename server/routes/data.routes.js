@@ -6,4 +6,6 @@ router.get("/get-all-restaurants", dataController.getAllRestaurants);
 router.get("/get-open-restaurants", dataController.getOpenRestaurants);
 router.get("/get-menu-items/:restaurantId", dataController.getMenuItems);
 
+router.post("/add-restaurant", dataController.addRestaurant);
+
 module.exports = router;

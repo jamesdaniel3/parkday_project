@@ -33,4 +33,5 @@ module.exports = {
       )
   ) active_menus ON mi.menu_id = active_menus.menu_id
   `,
+  addRestaurant: "Dynamic query built in service",
 };
