@@ -55,4 +55,46 @@ module.exports = {
     const result = await db.query(queryText, values);
     return result.rows[0].id;
   },
+  async addMenu(menuData) {
+    // Extract field names and values from the provided data
+    const fields = Object.keys(menuData).filter(
+      (key) => menuData[key] !== undefined && menuData[key] !== null
+    );
+
+    const values = fields.map((field) => menuData[field]);
+
+    // Create placeholders for prepared statement ($1, $2, etc.)
+    const placeholders = fields.map((_, index) => `$${index + 1}`).join(", ");
+
+    const queryText = `
+      INSERT INTO restaurant_menus (${fields.join(", ")})
+      VALUES (${placeholders})
+      RETURNING id
+    `;
+
+    const result = await db.query(queryText, values);
+
+    return result.rows[0]?.id;
+  },
+  async addMenuItem(menuItemData) {
+    // Extract field names and values from the provided data
+    const fields = Object.keys(menuItemData).filter(
+      (key) => menuItemData[key] !== undefined && menuItemData[key] !== null
+    );
+
+    const values = fields.map((field) => menuItemData[field]);
+
+    // Create placeholders for prepared statement ($1, $2, etc.)
+    const placeholders = fields.map((_, index) => `$${index + 1}`).join(", ");
+
+    // Create the query string
+    const queryText = `
+    INSERT INTO menu_items (${fields.join(", ")})
+    VALUES (${placeholders})
+    RETURNING id
+  `;
+    await db.query(queryText, values);
+
+    return;
+  },
 };

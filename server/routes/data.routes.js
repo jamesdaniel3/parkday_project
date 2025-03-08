@@ -7,5 +7,7 @@ router.get("/get-open-restaurants", dataController.getOpenRestaurants);
 router.get("/get-menu-items/:restaurantId", dataController.getMenuItems);
 
 router.post("/add-restaurant", dataController.addRestaurant);
+router.post("/add-menu", dataController.addMenu);
+router.post("/add-menu-item", dataController.addMenuItem);
 
 module.exports = router;
