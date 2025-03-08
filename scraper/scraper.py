@@ -2,7 +2,7 @@ import os
 import sys
 from dotenv import load_dotenv
 from data_converters import extract_text
-from prompts import MENU_PARSING_PROMPT, WEBSITE_PARSING_PROMPT
+from prompts import MENU_PARSING_PROMPT, WEBSITE_PARSING_PROMPT, RESTAURANT_DESCRIPTION_PROMPT
 from claude_functions import call_claude_api
 
 load_dotenv()
@@ -39,7 +39,6 @@ if not response:
 
 
 claude_response = response['content'][0]['text']
-response_lines = claude_response.strip().split('\n')
 
 # Save to menu.json
 try:
@@ -52,3 +51,22 @@ except Exception as e:
 
 print("Process complete. Data can be found in menu.json")
 
+urls = {
+    "instagram_url": "",
+    "opentable_url": "",
+    "resy_url": "",
+    "google_maps_url": "",
+    "eater_url": "",
+    "infatuation_url": "",
+}
+
+print("For each of the following, paste the link if you have it. If you do not, just hit enter:")
+for each in urls:
+    url = input(each +": ")
+    urls[each] = url
+
+
+description = call_claude_api(claude_response + RESTAURANT_DESCRIPTION_PROMPT, api_key)
+
+
+## call APIs to send data in

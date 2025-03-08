@@ -76,3 +76,5 @@ Structure the JSON as follows
     ...
 }
 """
+
+RESTAURANT_DESCRIPTION_PROMPT = """ The above text is a JSON representation of a restaurant menu, please generate a two-sentence description of the restaurant based on it's menu items. Don't output anything other than the description. """
