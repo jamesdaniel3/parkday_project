@@ -58,6 +58,16 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
+  dietContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+    marginRight: 10,
+    height: 30,
+    width: 30,
+  },
+  dietContainerText: {},
 });
 
 export default styles;

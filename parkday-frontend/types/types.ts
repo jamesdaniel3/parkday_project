@@ -6,7 +6,7 @@ export interface RestaurantCardProps {
   storefrontUrl?: string;
 }
 
-export interface MenuCardProps {
+export interface MenuItemCardProps {
   id: number;
   name: string;
   isVegetarian: boolean;
@@ -18,4 +18,8 @@ export interface MenuCardProps {
   imageUrl?: string;
   priceUsd?: number;
   ingredients?: string;
+}
+
+export interface DietTagProps {
+  text: string;
 }

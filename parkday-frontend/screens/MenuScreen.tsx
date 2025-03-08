@@ -1,4 +1,4 @@
-import MenuCard from "@/components/MenuCard";
+import MenuCard from "@/components/MenuItemCard";
 import React, { useEffect, useState } from "react";
 import { Button, ScrollView, TouchableOpacity } from "react-native";
 

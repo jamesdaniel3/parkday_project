@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { MenuCardProps } from "@/types/types";
-import styles from "../styles/MenuCardStyles";
+import { MenuItemCardProps } from "@/types/types";
+import styles from "../styles/MenuItemCardStyles";
+import DietTag from "./DietTag";
 
-const MenuCard: React.FC<MenuCardProps> = ({
+const MenuItemCard: React.FC<MenuItemCardProps> = ({
   id,
   name,
   isVegetarian,
@@ -33,15 +34,15 @@ const MenuCard: React.FC<MenuCardProps> = ({
 
         {/* Dietary Information */}
         <View style={styles.dietInfoContainer}>
-          {isVegetarian && <Text style={styles.dietTag}>Vegetarian</Text>}
-          {isKeto && <Text style={styles.dietTag}>Keto</Text>}
-          {isVegan && <Text style={styles.dietTag}>Vegan</Text>}
-          {isDairyFree && <Text style={styles.dietTag}>Dairy-Free</Text>}
-          {isPaleo && <Text style={styles.dietTag}>Paleo</Text>}
+          {isDairyFree && <DietTag text="DF"></DietTag>}
+          {isVegetarian && <DietTag text="VG"></DietTag>}
+          {isVegan && <DietTag text="V"></DietTag>}
+          {isKeto && <DietTag text="KE"></DietTag>}
+          {isPaleo && <DietTag text="PA"></DietTag>}
         </View>
       </View>
     </View>
   );
 };
 
-export default MenuCard;
+export default MenuItemCard;
