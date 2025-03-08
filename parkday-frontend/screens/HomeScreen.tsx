@@ -13,7 +13,6 @@ const HomeScreen = ({ navigation }: any) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch data from API
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
@@ -41,7 +40,6 @@ const HomeScreen = ({ navigation }: any) => {
     navigation.navigate("Menu", { restaurantId: id });
   };
 
-  // Loading and Error States
   if (loading) {
     return (
       <View>
