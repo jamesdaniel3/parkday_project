@@ -19,20 +19,11 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 }) => {
   return (
     <View style={styles.card}>
-      {/* Image */}
-      <View style={styles.imageContainer}>
-        {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
-      </View>
-
-      {/* Menu item content */}
       <View style={styles.content}>
-        {/* Name */}
         <Text style={styles.name}>{name}</Text>
 
-        {/* Description */}
         {description && <Text style={styles.description}>{description}</Text>}
 
-        {/* Dietary Information */}
         <View style={styles.dietInfoContainer}>
           {isDairyFree && <DietTag text="DF"></DietTag>}
           {isVegetarian && <DietTag text="VG"></DietTag>}
@@ -40,6 +31,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
           {isKeto && <DietTag text="KE"></DietTag>}
           {isPaleo && <DietTag text="PA"></DietTag>}
         </View>
+      </View>
+      <View style={styles.imageContainer}>
+        {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
       </View>
     </View>
   );
