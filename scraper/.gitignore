@@ -1,0 +1,4 @@
+.env
+menu.json
+/test_menus
+/__pycache__

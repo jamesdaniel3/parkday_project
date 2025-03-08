@@ -1,0 +1,13 @@
+# Image processing
+Pillow>=9.0.0
+pytesseract>=0.3.8
+
+# PDF processing
+PyPDF2>=3.0.0
+pdf2image>=1.16.0
+
+# API and HTTP
+requests>=2.27.1
+
+# Environment variables
+python-dotenv>=0.19.2
