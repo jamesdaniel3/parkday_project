@@ -1,7 +1,25 @@
 export interface RestaurantCardProps {
-  id: number; // Required id for API calls
-  name: string; // Required name
-  description?: string; // Optional description
-  logoUrl?: string; // Optional logo URL
-  storefrontUrl?: string; // Optional storefront URL
+  id: number;
+  name: string;
+  description?: string;
+  logoUrl?: string;
+  storefrontUrl?: string;
+}
+
+export interface MenuItemCardProps {
+  id: number;
+  name: string;
+  isVegetarian: boolean;
+  isKeto: boolean;
+  isVegan: boolean;
+  isDairyFree: boolean;
+  isPaleo: boolean;
+  description?: string;
+  imageUrl?: string;
+  priceUsd?: number;
+  ingredients?: string;
+}
+
+export interface DietTagProps {
+  text: string;
 }
