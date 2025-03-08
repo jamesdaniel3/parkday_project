@@ -53,3 +53,11 @@ def extract_text_from_pdf(pdf_path):
     except Exception as e:
         print(f"Error extracting text from PDF using OCR: {e}")
         return ""
+
+
+def extract_text(FILE_PATH):
+    if FILE_PATH.endswith(".pdf"):
+        return extract_text_from_pdf(FILE_PATH)
+    if FILE_PATH.endswith(".png") or FILE_PATH.endswith(".jpg") or FILE_PATH.endswith("jpeg"):
+        return extract_text_from_image(FILE_PATH)
+    return ""
