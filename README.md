@@ -32,7 +32,7 @@ The last notable feature of the backend was the use of migrations through Knex. 
 To create a migration:
 
 ```bash
-npm run make:migration -- comment_name
+npm run make:migration -- <migration name>
 ```
 
 After writing the migration file, you can run the migration with the following:
@@ -78,3 +78,7 @@ I built out most of this logic in my scraper, but I would definitely like to bui
 #### Checkout
 
 I would like to add a checkout feature, as referenced in Figma by the "Reserve this lunch" Frame. This is quite a big feature and if it were to be integrated fully, we would have a working app where users could order food.
+
+#### Data Removal
+
+There are not currently any API endpoints for removing data from the database. This would no-doubt be necessary as the project goes, but I wrote endpoints as I needed them when making this project and the issue did not arise with this scale.
