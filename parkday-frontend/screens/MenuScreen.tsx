@@ -1,6 +1,13 @@
 import MenuCard from "@/components/MenuItemCard";
 import React, { useEffect, useState } from "react";
-import { Button, ScrollView, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Text,
+} from "react-native";
 
 const MenuScreen = ({ route, navigation }: any) => {
   const { restaurantId } = route.params;
@@ -8,7 +15,6 @@ const MenuScreen = ({ route, navigation }: any) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch data from API
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
@@ -31,6 +37,23 @@ const MenuScreen = ({ route, navigation }: any) => {
 
     fetchRestaurants();
   }, []);
+
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading restaurants...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView>
