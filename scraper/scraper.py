@@ -1,7 +1,7 @@
 import os
 import sys
 from dotenv import load_dotenv
-from data_converters import extract_text_from_image
+from data_converters import extract_text_from_image, extract_text_from_pdf
 from prompts import MENU_PARSING_PROMPT
 from claude_functions import call_claude_api
 
@@ -12,8 +12,14 @@ if not api_key:
     print("Error: CLAUDE_API_KEY not found in environment variables")
     sys.exit(1)
 
-IMAGE_PATH = input("Enter the path to your image: ")
-extracted_text = extract_text_from_image(IMAGE_PATH)
+FILE_PATH =  "./test_menus/BlueDoorFarmStand.pdf" # input("Enter the path to your image: ")
+# extracted_text = extract_text_from_image(FILE_PATH)
+extracted_text = ""
+if FILE_PATH.endswith(".pdf"):
+    extracted_text = extract_text_from_pdf(FILE_PATH)
+if FILE_PATH.endswith(".png") or FILE_PATH.endswith(".jpg") or FILE_PATH.endswith("jpeg"):
+    extracted_text = extract_text_from_image(FILE_PATH)
+
 
 if not extracted_text:
     print("Failed to extract text")
