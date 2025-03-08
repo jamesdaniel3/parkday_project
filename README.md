@@ -29,6 +29,20 @@ node server.js
 
 The last notable feature of the backend was the use of migrations through Knex. After setting up connections to my produciton and development PostgreSQL instances, I needed to create the columns and tables of my database. I could have done this manually through a GUI or CLI for both instances, but I chose to set up migrations as I would want to have them on a larger project. They allow for version control within the database and provide a log of all changes made to the database over time.
 
+To create a migration:
+
+```bash
+npm run make:migration -- comment_name
+```
+
+After writing the migration file, you can run the migration with the following:
+
+```bash
+npm run migrate:dev
+```
+
+Then, the bash script will force the migraitons to be made when deploying the backend to google cloud.
+
 ### Database Design
 
 ![Database Diagram](/DatabaseDiagram.png)
