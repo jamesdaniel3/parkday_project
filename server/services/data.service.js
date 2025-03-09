@@ -21,7 +21,7 @@ module.exports = {
   },
   async getRestaurantInfo(restaurantId) {
     const result = await db.query(queries.getRestaurantInfo, [restaurantId]);
-    return result.rows;
+    return result.rows[0];
   },
   async getMenuItems(restaurantId) {
     const day = new Date().getDay();
