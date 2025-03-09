@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   image_container: {
     flexDirection: "row",
-    justifyContent: "space-between",
     marginTop: 20,
   },
   restaurant_name: {
