@@ -17,9 +17,37 @@ module.exports = {
       ctx.throw(500, error.message);
     }
   },
+  async getRestaurantInfo(ctx) {
+    try {
+      const restaurantId = ctx.params.restaurantId;
+
+      if (!restaurantId) {
+        ctx.status = 400;
+        ctx.body = {
+          status: "error",
+          message: "Restaurant ID is required",
+        };
+        return;
+      }
+
+      const data = await dataService.getRestaurantInfo(restaurantId);
+      ctx.body = { status: "success", data };
+    } catch (error) {
+      ctx.throw(500, error.message);
+    }
+  },
   async getMenuItems(ctx) {
     try {
       const restaurantId = ctx.params.restaurantId;
+
+      if (!restaurantId) {
+        ctx.status = 400;
+        ctx.body = {
+          status: "error",
+          message: "Restaurant ID is required",
+        };
+        return;
+      }
 
       const data = await dataService.getMenuItems(restaurantId);
       ctx.body = { status: "success", data };

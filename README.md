@@ -61,6 +61,28 @@ The UI is currently fairly simple, and I just focused on making the cleanest and
 
 ### Scraper Design
 
+When I went to design the webscraper, I started off by testing many tools and seeing which I thought had potential. After using 3-4 tools marketed as AI-based web-scraping tools, I saw what appeared to be a fatal flaw. When encountering embedded images or PDFs, these tools just saw the tags and moved on, seemingly unable to extract the context from within the image or PDF that menus are so often located in.
+
+To solve this problem, I went with the following process. The web scraper can be run from the command line and will ask users if the menu they want to scrape is on a website, or it's a PDF or image. If it's on a website, the script prompts Anthropic's Claude 3.7 Sonnet Model to read the website and return the data in a structured format (you can see the prompts in `prompts.py`). If the menu is a PDF or image, the user is asked to download/screenshot the PDF or image, and the text is extracted from the asset before being sent to the same model for structuring.
+
+After the data is structured, a restaurant description is generated based on the data and the user is asked for any of the links that might be relevant to the restaurant (Resy, Instagram, etc...).
+
+There is a decent amount of user input needed for this solution, but some of it can be removed in the future and there is no need for additional code writing.
+
+I chose to write this functionality in Python because it had the tools I was most familair with for taking text from images or converting PDFs to plain text.
+
+You can run the scraper with the following:
+
+```bash
+cd scraper
+pip install -r requirements.txt
+brew install tesseract
+brew install poppler
+python get_data.py
+```
+
+Depending on the value of `BASE_URL` in your environment variables, it will either update the production database or your local database.
+
 # Future Roadmap
 
 If I were to continue devleoping this project, here are a few of the changes I would like to make/features I would like to add.

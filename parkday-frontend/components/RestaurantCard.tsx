@@ -4,31 +4,23 @@ import { RestaurantCardProps } from "../types/types";
 import styles from "../styles/RestaurantCardStyles";
 
 const RestaurantCard: React.FC<RestaurantCardProps> = ({
-  id,
   name,
   description,
   logoUrl,
-  storefrontUrl,
 }) => {
   return (
     <View style={styles.card}>
-      {/* Logo */}
-
       <View style={styles.content}>
-        {/* Name */}
         <Text style={styles.name}>{name}</Text>
-
-        {/* Description (optional) */}
-        {description && <Text style={styles.description}>{description}</Text>}
-
-        {/* Storefront link (optional, clickable)
-        {storefrontUrl && (
-          <TouchableOpacity
-            onPress={() => console.log("Navigating to storefront")}
+        {description && (
+          <Text
+            numberOfLines={3}
+            ellipsizeMode="tail"
+            style={styles.description}
           >
-            <Text style={styles.storefrontLink}>Visit Storefront</Text>
-          </TouchableOpacity>
-        )} */}
+            {description}
+          </Text>
+        )}
       </View>
       <View style={styles.logo_box}>
         {logoUrl && <Image source={{ uri: logoUrl }} style={styles.logo} />}

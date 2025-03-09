@@ -4,20 +4,18 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: "1%",
+    paddingTop: "2%",
     borderRadius: 20,
     backgroundColor: "#FAF7E4",
-    marginLeft: 15,
-    marginRight: 15,
-    marginTop: 7.5,
-    marginBottom: 7.5,
-    height: "90%",
+    marginHorizontal: 15,
+    marginVertical: 7.5,
+    height: 120, // Fixed height for the card
   },
   logo: {
     width: 50,
     height: 50,
     marginRight: "10%",
-    objectFit: "cover",
+    resizeMode: "cover", // Correct image scaling property
   },
   logo_box: {
     flexDirection: "row",
@@ -25,7 +23,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   content: {
+    flex: 1, // Allow content to take up remaining space
     marginLeft: "5%",
+    marginRight: "5%",
     marginTop: "2%",
   },
   name: {
@@ -35,6 +35,15 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     color: "#777",
+  },
+  truncatedText: {
+    overflow: "hidden", // Ensure text doesn't overflow
+  },
+  moreLink: {
+    color: "blue",
+    textDecorationLine: "underline", // Correct property for underlining text
+    fontSize: 14,
+    marginTop: 5,
   },
 });
 
