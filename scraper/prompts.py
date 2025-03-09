@@ -26,7 +26,7 @@ MENU_PARSING_PROMPT = """ The above is text extracted from a menu. Please take t
 }
 
 If you cannot find a value for description, price_usd, or ingredients, use null. The fields is_vegan, is_vegetarian, is_keto, is_dairy_free, and is_paleo must be filled and must have a boolean value. 
-If you cannot determine whether or not a meal meets the requirements to be in one of those fields based off the text available, use False. 
+If you cannot determine whether or not a meal meets the requirements to be in one of those fields based off the text available, use false. Ensure that you use lowercase when using true or false values.
 Please only output the JSON Object. Don't include anything around the object like ```json, start from [
 """
 
@@ -45,7 +45,7 @@ Any dietary information (vegetarian, vegan, gluten-free, etc.)
 Ingredients
 
 If you cannot find a value for description, price_usd, or ingredients, use null. The fields is_vegan, is_vegetarian, is_keto, is_dairy_free, and is_paleo must be filled and must have a boolean value. 
-If you cannot determine whether or not a meal meets the requirements to be in one of those fields based off the text available, use False. 
+If you cannot determine whether or not a meal meets the requirements to be in one of those fields based off the text available, use false. Ensure that you use lowercase when using true or false values.
 Please only output the JSON Object. Don't include anything around the object like ```json, start from [
 
 Structure the JSON as follows
