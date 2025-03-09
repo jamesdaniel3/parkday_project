@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from data_converters import extract_text
 from prompts import MENU_PARSING_PROMPT, WEBSITE_PARSING_PROMPT, RESTAURANT_DESCRIPTION_PROMPT
 from claude_functions import call_claude_api
+from update_db import update_db
 
 load_dotenv()
 api_key = os.getenv("CLAUDE_API_KEY")
@@ -12,6 +13,7 @@ if not api_key:
     print("Error: CLAUDE_API_KEY not found in environment variables")
     sys.exit(1)
 
+name = input("Enter the name of the restaurant for which you are gathering data: ")
 menu_type = input("""If the menu data you are trying to get is on a website, please enter 1. 
 If the menu data you are trying to access is in a PDF or image, please enter 2. """)
 
@@ -66,7 +68,12 @@ for each in urls:
     urls[each] = url
 
 
-description = call_claude_api(claude_response + RESTAURANT_DESCRIPTION_PROMPT, api_key)
+description_response = call_claude_api(claude_response + RESTAURANT_DESCRIPTION_PROMPT, api_key)
 
+restaurant_data = urls
+restaurant_data["name"] = name
+restaurant_data["description"] = description_response['content'][0]['text']
 
+print(restaurant_data)
 ## call APIs to send data in
+update_db(restaurant_data)
