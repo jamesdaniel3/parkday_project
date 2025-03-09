@@ -21,7 +21,9 @@ if menu_type == "1":
     menu_url = input("Enter the url of your restaurant's menu: ")
 elif menu_type == "2":
     file_path = input("Download the PDF or screenshot the image and enter the file path: ")
+    print("Starting text extraction...")
     extracted_text = extract_text(file_path)
+    print("Text extraction completed")
 else:
     print("Invalid input, must choose 1 or 2. Please run the file again.")
     sys.exit(1)
@@ -33,13 +35,14 @@ if menu_type == "2" and not extracted_text:
 
 prompt = (menu_url + WEBSITE_PARSING_PROMPT) if menu_type == "1" else (extracted_text + MENU_PARSING_PROMPT)
 
+print("Prompting Claude to structure data...")
 response = call_claude_api(prompt, api_key)
 
 if not response: 
     print("Failed to get response from Claude API")
     sys.exit(1)
 
-
+print("Response received")
 claude_response = response['content'][0]['text']
 
 # Save to menu.json
@@ -67,13 +70,14 @@ for each in urls:
     url = input(each +": ")
     urls[each] = url
 
-
+print("Generating a description of the restaurant")
 description_response = call_claude_api(claude_response + RESTAURANT_DESCRIPTION_PROMPT, api_key)
 
 restaurant_data = urls
 restaurant_data["name"] = name
 restaurant_data["description"] = description_response['content'][0]['text']
 
-print(restaurant_data)
+
 ## call APIs to send data in
+print("Sending data to database")
 update_db(restaurant_data)
