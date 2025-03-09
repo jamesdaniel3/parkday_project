@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: 100,
