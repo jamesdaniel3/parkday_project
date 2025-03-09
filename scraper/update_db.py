@@ -1,5 +1,6 @@
 import json
 import requests
+import os
 from dotenv import load_dotenv
 
 def update_db(restaurant_data):
