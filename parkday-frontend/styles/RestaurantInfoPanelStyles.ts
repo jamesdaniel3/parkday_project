@@ -4,12 +4,12 @@ const styles = StyleSheet.create({
   image_container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
     marginTop: 20,
   },
   restaurant_name: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
+    marginBottom: 10,
   },
 });
 

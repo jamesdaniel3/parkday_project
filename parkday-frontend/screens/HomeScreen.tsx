@@ -58,18 +58,16 @@ const HomeScreen = ({ navigation }: any) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "#ffcc99", paddingTop: 50 }}>
       {restaurants.map((restaurant) => (
         <TouchableOpacity
           key={restaurant.id}
           onPress={() => handleCardPress(restaurant.id)}
         >
           <RestaurantCard
-            id={restaurant.id}
             name={restaurant.name}
             description={restaurant.description}
             logoUrl={restaurant.logo_url}
-            storefrontUrl={restaurant.store_image_url}
           />
         </TouchableOpacity>
       ))}

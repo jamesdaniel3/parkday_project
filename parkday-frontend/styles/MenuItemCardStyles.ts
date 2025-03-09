@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: "#FAF7E4",
     margin: 10,
     padding: 15,
     borderRadius: 8,
+    borderWidth: 1,
     elevation: 5,
   },
   imageContainer: {
