@@ -35,7 +35,7 @@ if menu_type == "2" and not extracted_text:
 
 prompt = (menu_url + WEBSITE_PARSING_PROMPT) if menu_type == "1" else (extracted_text + MENU_PARSING_PROMPT)
 
-print("Prompting Claude to structure data...")
+print("Prompting Claude to retrieve structured data...")
 response = call_claude_api(prompt, api_key)
 
 if not response: 
