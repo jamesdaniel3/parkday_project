@@ -67,9 +67,26 @@ const MenuScreen = ({ route, navigation }: any) => {
 
   if (loadingRestaurantData || loadingMenuData) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading restaurants...</Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#ffcc99",
+          height: "100%",
+        }}
+      >
+        <ActivityIndicator size="large" color="black" />
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: 700,
+            marginTop: 20,
+          }}
+        >
+          Loading restaurants...
+        </Text>
       </View>
     );
   }
