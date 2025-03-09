@@ -1,8 +1,9 @@
 import json
 import requests
+from dotenv import load_dotenv
 
 def update_db(restaurant_data):
-    API_BASE_URL = 'http://localhost:8080/api/data'
+    API_BASE_URL = os.getenv("BASE_URL")
     
     # 1. Add restaurant    
     restaurant_response = requests.post(f"{API_BASE_URL}/add-restaurant", json=restaurant_data)
