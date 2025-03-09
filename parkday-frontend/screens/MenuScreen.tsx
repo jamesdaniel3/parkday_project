@@ -1,4 +1,5 @@
 import MenuCard from "@/components/MenuItemCard";
+import RestaurantInfoPanel from "@/components/RestaurantInfoPanel";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -12,8 +13,9 @@ import {
 const MenuScreen = ({ route, navigation }: any) => {
   const { restaurantId } = route.params;
   const [menuItems, setMenuItems] = useState<any[]>([]);
-  const [restaurantData, setRestaurantData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [restaurantData, setRestaurantData] = useState<any>({});
+  const [loadingRestaurantData, setLoadingRestaurantData] = useState(true);
+  const [loadingMenuData, setLoadingMenuData] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -26,8 +28,10 @@ const MenuScreen = ({ route, navigation }: any) => {
         const data = await response.json();
         if (data.status === "success") {
           setMenuItems(data.data);
+          setLoadingMenuData(false);
         } else {
           setError("No menu items found.");
+          setLoadingMenuData(false);
         }
       } catch (err) {
         setError("Error fetching menu items.");
@@ -47,8 +51,10 @@ const MenuScreen = ({ route, navigation }: any) => {
 
         if (data.status === "success") {
           setRestaurantData(data.data);
+          setLoadingRestaurantData(false);
         } else {
           setError("Restaurant info could not be retrieved.");
+          setLoadingRestaurantData(false);
         }
       } catch (err) {
         setError("Error fetching restaurant info.");
@@ -57,11 +63,7 @@ const MenuScreen = ({ route, navigation }: any) => {
     fetchRestaurantInfo();
   }, []);
 
-  if (loading && restaurantData && menuItems) {
-    setLoading(false);
-  }
-
-  if (loading) {
+  if (loadingRestaurantData || loadingMenuData) {
     return (
       <View>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -69,6 +71,7 @@ const MenuScreen = ({ route, navigation }: any) => {
       </View>
     );
   }
+  console.log(restaurantData);
 
   if (error) {
     return (
@@ -82,6 +85,18 @@ const MenuScreen = ({ route, navigation }: any) => {
     <>
       <Button title="Go Back" onPress={() => navigation.goBack()} />
       <ScrollView>
+        <RestaurantInfoPanel
+          name={restaurantData.name}
+          description={restaurantData.description}
+          logoUrl={restaurantData.logo_url}
+          storeImageUrl={restaurantData.store_image_url}
+          instagramUrl={restaurantData.instagram_url}
+          googleMapsUrl={restaurantData.google_maps_url}
+          opentableUrl={restaurantData.opentable_url}
+          resyUrl={restaurantData.resy_url}
+          eaterUrl={restaurantData.eater_url}
+          infatuationUrl={restaurantData.infatuation_url}
+        ></RestaurantInfoPanel>
         {menuItems.map((menuItem) => (
           <TouchableOpacity key={menuItem.id}>
             <MenuCard

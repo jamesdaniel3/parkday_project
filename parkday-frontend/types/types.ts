@@ -21,3 +21,16 @@ export interface MenuItemCardProps {
 export interface DietTagProps {
   text: string;
 }
+
+export interface RestaurantInfoPanelProps {
+  name: string;
+  description?: string;
+  logoUrl?: string;
+  storeImageUrl?: string;
+  instagramUrl?: string;
+  googleMapsUrl?: string;
+  opentableUrl?: string;
+  resyUrl?: string;
+  eaterUrl?: string;
+  infatuationUrl?: string;
+}
