@@ -4,11 +4,9 @@ import { RestaurantCardProps } from "../types/types";
 import styles from "../styles/RestaurantCardStyles";
 
 const RestaurantCard: React.FC<RestaurantCardProps> = ({
-  id,
   name,
   description,
   logoUrl,
-  storefrontUrl,
 }) => {
   return (
     <View style={styles.card}>

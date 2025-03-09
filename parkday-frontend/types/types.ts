@@ -1,9 +1,7 @@
 export interface RestaurantCardProps {
-  id: number;
   name: string;
   description?: string;
   logoUrl?: string;
-  storefrontUrl?: string;
 }
 
 export interface MenuItemCardProps {
