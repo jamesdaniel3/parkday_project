@@ -1,3 +1,4 @@
+const { getRestaurantInfo } = require("../controllers/data.controller");
 const db = require("../database_logic");
 const queries = require("../database_logic/queries/users.queries");
 
@@ -10,15 +11,16 @@ module.exports = {
     const dayOfWeek = new Date().getDay();
     const currentTime = new Date().toTimeString().split(" ")[0];
 
-    console.log(dayOfWeek);
-    console.log(currentTime);
-
     const result = await db.query(queries.getOpenRestaurants, [
       dayOfWeek,
       currentTime,
       currentTime,
       currentTime,
     ]);
+    return result.rows;
+  },
+  async getRestaurantInfo(restaurantId) {
+    const result = await db.query(queries.getRestaurantInfo, [restaurantId]);
     return result.rows;
   },
   async getMenuItems(restaurantId) {

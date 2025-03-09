@@ -33,6 +33,7 @@ module.exports = {
       )
   ) active_menus ON mi.menu_id = active_menus.menu_id
   `,
+  getRestaurantInfo: `SELECT * FROM restaurants r WHERE r.id = $1`,
   addRestaurant: "Dynamic query built in service",
   addMenu: "Dynamic query built in service",
   addMenuItem: "Dynamic query built in service",
