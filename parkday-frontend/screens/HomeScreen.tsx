@@ -69,7 +69,7 @@ const HomeScreen = ({ navigation }: any) => {
             name={restaurant.name}
             description={restaurant.description}
             logoUrl={restaurant.logo_url}
-            storefrontUrl={restaurant.stored_image_url}
+            storefrontUrl={restaurant.store_image_url}
           />
         </TouchableOpacity>
       ))}
