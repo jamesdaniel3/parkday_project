@@ -37,6 +37,16 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "fonts": [
+      {
+        "asset": "./assets/fonts/Panel_Sans_Regular.otf",
+        "family": "PanelSans"
+      },
+      {
+        "asset": "./assets/fonts/Panel_Sans_Bold.otf",
+        "family": "PanelSans-Bold"
+      }
+    ]
   }
 }

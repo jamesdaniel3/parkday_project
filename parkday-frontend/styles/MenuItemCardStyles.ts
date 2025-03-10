@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 15,
     borderRadius: 8,
-
     elevation: 5,
   },
   imageContainer: {
@@ -27,6 +26,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
+    fontFamily: "PanelSans-Bold",
     fontWeight: "bold",
     color: "#333",
   },

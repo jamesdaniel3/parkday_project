@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   },
   restaurant_name: {
     fontSize: 30,
+    fontFamily: "PanelSans-Bold",
     fontWeight: "bold",
     marginBottom: 10,
   },
