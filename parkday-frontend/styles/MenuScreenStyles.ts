@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#ffcc99",
     padding: 15,
-    zIndex: 10, // Ensure header is above other content
+    zIndex: 10,
   },
   headerText: {
     fontSize: 16,

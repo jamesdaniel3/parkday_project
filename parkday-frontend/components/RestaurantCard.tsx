@@ -22,7 +22,7 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({
           </Text>
         )}
       </View>
-      <View style={styles.logo_box}>
+      <View style={styles.logoBox}>
         {logoUrl && <Image source={{ uri: logoUrl }} style={styles.logo} />}
       </View>
     </View>

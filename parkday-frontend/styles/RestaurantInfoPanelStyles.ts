@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  image_container: {
+  imageContainer: {
     flexDirection: "row",
     marginTop: 20,
   },
-  restaurant_name: {
+  restaurantName: {
     fontSize: 30,
     fontFamily: "PanelSans-Bold",
     fontWeight: "bold",

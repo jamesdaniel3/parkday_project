@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginRight: "10%",
     resizeMode: "cover", // Correct image scaling property
   },
-  logo_box: {
+  logoBox: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

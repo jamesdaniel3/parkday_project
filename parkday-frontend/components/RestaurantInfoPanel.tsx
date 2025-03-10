@@ -24,9 +24,9 @@ const RestaurantInfoPanel: React.FC<RestaurantInfoPanelProps> = ({
   };
   return (
     <View style={styles.continer}>
-      <Text style={styles.restaurant_name}>{name}</Text>
+      <Text style={styles.restaurantName}>{name}</Text>
       {description && <Text style={styles.description}>{description}</Text>}
-      <View style={styles.image_container}>
+      <View style={styles.imageContainer}>
         {instagramUrl && (
           <TouchableOpacity onPress={() => openLink(instagramUrl)}>
             <Image
