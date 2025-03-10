@@ -23,9 +23,9 @@ const RestaurantInfoPanel: React.FC<RestaurantInfoPanelProps> = ({
     }
   };
   return (
-    <View style={{ paddingHorizontal: 20, marginBottom: 20 }}>
+    <View style={styles.continer}>
       <Text style={styles.restaurant_name}>{name}</Text>
-      {description && <Text style={{ fontSize: 15 }}>{description}</Text>}
+      {description && <Text style={styles.description}>{description}</Text>}
       <View style={styles.image_container}>
         {instagramUrl && (
           <TouchableOpacity onPress={() => openLink(instagramUrl)}>
@@ -83,8 +83,6 @@ const RestaurantInfoPanel: React.FC<RestaurantInfoPanelProps> = ({
           </TouchableOpacity>
         )}
       </View>
-
-      <View>{logoUrl && <Image source={{ uri: logoUrl }} />}</View>
     </View>
   );
 };

@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import RestaurantCard from "@/components/RestaurantCard";
+import styles from "@/styles/MenuScreenStyles";
 
 const HomeScreen = ({ navigation }: any) => {
   const [restaurants, setRestaurants] = useState<any[]>([]);
@@ -42,26 +43,9 @@ const HomeScreen = ({ navigation }: any) => {
 
   if (loading) {
     return (
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#ffcc99",
-          height: "100%",
-        }}
-      >
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="black" />
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: 700,
-            marginTop: 20,
-          }}
-        >
-          Loading restaurants...
-        </Text>
+        <Text style={styles.loadingText}>Loading restaurants...</Text>
       </View>
     );
   }

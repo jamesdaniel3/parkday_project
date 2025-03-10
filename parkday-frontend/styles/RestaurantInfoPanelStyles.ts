@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
+  continer: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 15,
+  },
 });
 
 export default styles;

@@ -11,6 +11,7 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
+import styles from "@/styles/MenuScreenStyles";
 
 const MenuScreen = ({ route, navigation }: any) => {
   const { restaurantId } = route.params;
@@ -67,26 +68,9 @@ const MenuScreen = ({ route, navigation }: any) => {
 
   if (loadingRestaurantData || loadingMenuData) {
     return (
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#ffcc99",
-          height: "100%",
-        }}
-      >
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="black" />
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: 700,
-            marginTop: 20,
-          }}
-        >
-          Loading restaurants...
-        </Text>
+        <Text style={styles.loadingText}>Loading restaurants...</Text>
       </View>
     );
   }
@@ -101,14 +85,12 @@ const MenuScreen = ({ route, navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Fixed header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.headerText}>Return to restaurants</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Scrollable content */}
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.content}>
           <RestaurantInfoPanel
@@ -145,28 +127,5 @@ const MenuScreen = ({ route, navigation }: any) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ffcc99",
-  },
-  header: {
-    backgroundColor: "#ffcc99",
-    padding: 15,
-    zIndex: 10, // Ensure header is above other content
-  },
-  headerText: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-  content: {
-    backgroundColor: "#ffcc99",
-    paddingBottom: 20,
-  },
-});
 
 export default MenuScreen;
