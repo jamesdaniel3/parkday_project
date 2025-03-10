@@ -37,7 +37,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
         {!imageUrl && (
           <Image
             source={require("../assets/images/menuItemImagePlaceholder.png")}
-            style={{ marginLeft: 20 }}
+            style={styles.placeholderImage}
           />
         )}
       </View>

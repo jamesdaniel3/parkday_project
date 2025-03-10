@@ -70,7 +70,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
   },
-  dietContainerText: {},
+  placeholderImage: {
+    marginLeft: 20,
+  },
 });
 
 export default styles;
