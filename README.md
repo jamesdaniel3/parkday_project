@@ -12,6 +12,8 @@ The backend is hosted on Google Cloud and all the API calls in the frontend are 
 
 For this project, I built the frontend in React-Native which I generated the boilerplate for with Expo. As requested, I built the backend in Node JS along with Koa and Knex.
 
+All of the data currently in the production database was generated using the web scraper that was built as part of this project.
+
 ### Backend Design
 
 A large focus of mine when building this project was creating a backend that I thought could be scalable and maintable. The only backend-related choice that I made to the contrary was writing the backend if JavaScript instead of TypeScript. While I am comfortable writing code in TypeScript, I was having too many issues with the config files when setting up the backend intially to justify the time sink that would come with contuing to use TypeScript. I opted to use JavaScript for the increased speed of developement, given the scope of the project.
@@ -87,20 +89,30 @@ Depending on the value of `BASE_URL` in your environment variables, it will eith
 
 If I were to continue devleoping this project, here are a few of the changes I would like to make/features I would like to add.
 
-#### Searchability
+### Searchability
 
 I would like to add a search bar on both the homescreen and a menu screen to allow users to more effectively find restaurants or meals that they want.
 
-#### Admin Dashboard for Adding Website Info
+### Admin Dashboard for Adding Website Info
 
 I was not able to find an AI tool that was super effective at scraping the many different websites structures that different restaurants use. I think the best solution would be to build out a dashboard where a user can provide a link to the restaurant's website along with either a link to their menu or a file containing their menu. AI tools can then be used to generate as much information as possible about the restaurant. Once the information is generated, it could be displayed and users could edit anything they see fit. Finally, users could hit a button to confirm and the data could be sent to the database.
 
 I built out most of this logic in my scraper, but I would definitely like to build a UI for it to minimize the technical barrier-to-entry for users.
 
-#### Checkout
+### Improved Image Handling
+
+Currently, the scraper is not able to extract images from menus and does not prompt the user for restaurant logos or storefront images. I didn't want to add this information to the prompts in the scraper as I wanted to minimize the load on the user to input a new website's data. I would like to either improve the scraper or find some other solution to handle image retrieval in order to improve the data available to the project.
+
+### Improve Creation APIs
+
+The APIs for adding restaurant data and menu data currently do not have functionality to update the operating hours table for a restaurant or the menu_availabilty table for a menu. The scraper would need to be improve to have this data, but it is necessary for the app to function if the scale were to continue to grow.
+
+The search APIs can already effectively return restaurants that are open and menu items that are available, they just default to assuming availability if information is not available in the database to prove otherwise. I would like to improve the scraper and the APIs to allow for this data to be retreived.
+
+### Checkout
 
 I would like to add a checkout feature, as referenced in Figma by the "Reserve this lunch" Frame. This is quite a big feature and if it were to be integrated fully, we would have a working app where users could order food.
 
-#### Data Removal
+### Data Removal
 
 There are not currently any API endpoints for removing data from the database. This would no-doubt be necessary as the project goes, but I wrote endpoints as I needed them when making this project and the issue did not arise with this scale.
