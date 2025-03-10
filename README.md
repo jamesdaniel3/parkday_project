@@ -116,3 +116,7 @@ I would like to add a checkout feature, as referenced in Figma by the "Reserve t
 ### Data Removal
 
 There are not currently any API endpoints for removing data from the database. This would no-doubt be necessary as the project goes, but I wrote endpoints as I needed them when making this project and the issue did not arise with this scale.
+
+### Security
+
+If I were to continue developing this project or to try and take it to scale, updating security measures would be one of my first actions. As currently built, the Google Cloud Console that is hosting this server and database has almost no security measures, and the API endpoints also lack in this area. I wrote everything this way for the ease of development, but if this project were to start handling user data I would be quick to make it more secure.
