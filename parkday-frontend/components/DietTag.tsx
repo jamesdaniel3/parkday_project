@@ -11,7 +11,7 @@ const MenuCard: React.FC<DietTagProps> = ({ text }) => {
 
   return (
     <View style={[styles.dietContainer, containerStyle]}>
-      <Text style={styles.dietContainerText}>{text}</Text>
+      <Text>{text}</Text>
     </View>
   );
 };

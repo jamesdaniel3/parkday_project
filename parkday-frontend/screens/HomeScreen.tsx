@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import RestaurantCard from "@/components/RestaurantCard";
+import styles from "@/styles/MenuScreenStyles";
 
 const HomeScreen = ({ navigation }: any) => {
   const [restaurants, setRestaurants] = useState<any[]>([]);
@@ -42,9 +43,9 @@ const HomeScreen = ({ navigation }: any) => {
 
   if (loading) {
     return (
-      <View>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading restaurants...</Text>
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="black" />
+        <Text style={styles.loadingText}>Loading restaurants...</Text>
       </View>
     );
   }
@@ -58,18 +59,16 @@ const HomeScreen = ({ navigation }: any) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "#ffcc99", paddingTop: 50 }}>
       {restaurants.map((restaurant) => (
         <TouchableOpacity
           key={restaurant.id}
           onPress={() => handleCardPress(restaurant.id)}
         >
           <RestaurantCard
-            id={restaurant.id}
             name={restaurant.name}
             description={restaurant.description}
             logoUrl={restaurant.logo_url}
-            storefrontUrl={restaurant.store_image_url}
           />
         </TouchableOpacity>
       ))}

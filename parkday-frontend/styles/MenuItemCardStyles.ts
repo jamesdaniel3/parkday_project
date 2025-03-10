@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: "#FAF7E4",
     margin: 10,
     padding: 15,
     borderRadius: 8,
@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: 100,
@@ -24,6 +26,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
+    fontFamily: "PanelSans-Bold",
     fontWeight: "bold",
     color: "#333",
   },
@@ -67,7 +70,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
   },
-  dietContainerText: {},
+  placeholderImage: {
+    marginLeft: 20,
+  },
 });
 
 export default styles;

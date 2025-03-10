@@ -8,7 +8,10 @@ import {
   TouchableOpacity,
   View,
   Text,
+  StyleSheet,
+  SafeAreaView,
 } from "react-native";
+import styles from "@/styles/MenuScreenStyles";
 
 const MenuScreen = ({ route, navigation }: any) => {
   const { restaurantId } = route.params;
@@ -65,57 +68,63 @@ const MenuScreen = ({ route, navigation }: any) => {
 
   if (loadingRestaurantData || loadingMenuData) {
     return (
-      <View>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading restaurants...</Text>
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="black" />
+        <Text style={styles.loadingText}>Loading restaurants...</Text>
       </View>
     );
   }
-  console.log(restaurantData);
 
   if (error) {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>{error}</Text>
       </View>
     );
   }
 
   return (
-    <>
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
-      <ScrollView>
-        <RestaurantInfoPanel
-          name={restaurantData.name}
-          description={restaurantData.description}
-          logoUrl={restaurantData.logo_url}
-          storeImageUrl={restaurantData.store_image_url}
-          instagramUrl={restaurantData.instagram_url}
-          googleMapsUrl={restaurantData.google_maps_url}
-          opentableUrl={restaurantData.opentable_url}
-          resyUrl={restaurantData.resy_url}
-          eaterUrl={restaurantData.eater_url}
-          infatuationUrl={restaurantData.infatuation_url}
-        ></RestaurantInfoPanel>
-        {menuItems.map((menuItem) => (
-          <TouchableOpacity key={menuItem.id}>
-            <MenuCard
-              id={menuItem.id}
-              name={menuItem.name}
-              isVegetarian={menuItem.is_vegetarian}
-              isKeto={menuItem.is_keto}
-              isVegan={menuItem.is_vegan}
-              isDairyFree={menuItem.is_dairy_free}
-              isPaleo={menuItem.is_paleo}
-              description={menuItem.description}
-              imageUrl={menuItem.image_url}
-              priceUsd={menuItem.price_usd}
-              ingredients={menuItem.ingredients}
-            />
-          </TouchableOpacity>
-        ))}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.headerText}>Return to restaurants</Text>
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.content}>
+          <RestaurantInfoPanel
+            name={restaurantData.name}
+            description={restaurantData.description}
+            logoUrl={restaurantData.logo_url}
+            storeImageUrl={restaurantData.store_image_url}
+            instagramUrl={restaurantData.instagram_url}
+            googleMapsUrl={restaurantData.google_maps_url}
+            opentableUrl={restaurantData.opentable_url}
+            resyUrl={restaurantData.resy_url}
+            eaterUrl={restaurantData.eater_url}
+            infatuationUrl={restaurantData.infatuation_url}
+          />
+          {menuItems.map((menuItem) => (
+            <TouchableOpacity key={menuItem.id}>
+              <MenuCard
+                id={menuItem.id}
+                name={menuItem.name}
+                isVegetarian={menuItem.is_vegetarian}
+                isKeto={menuItem.is_keto}
+                isVegan={menuItem.is_vegan}
+                isDairyFree={menuItem.is_dairy_free}
+                isPaleo={menuItem.is_paleo}
+                description={menuItem.description}
+                imageUrl={menuItem.image_url}
+                priceUsd={menuItem.price_usd}
+                ingredients={menuItem.ingredients}
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 

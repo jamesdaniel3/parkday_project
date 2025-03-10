@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingTop: "2%",
     borderRadius: 20,
+    borderColor: "black",
     backgroundColor: "#FAF7E4",
     marginHorizontal: 15,
     marginVertical: 7.5,
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     marginRight: "10%",
     resizeMode: "cover", // Correct image scaling property
   },
-  logo_box: {
+  logoBox: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -29,8 +30,10 @@ const styles = StyleSheet.create({
     marginTop: "2%",
   },
   name: {
+    fontFamily: "PanelSans-Bold",
     fontSize: 18,
     fontWeight: "bold",
+    marginBottom: 5,
   },
   description: {
     fontSize: 14,

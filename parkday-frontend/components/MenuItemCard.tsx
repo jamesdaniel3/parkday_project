@@ -34,6 +34,12 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
       </View>
       <View style={styles.imageContainer}>
         {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
+        {!imageUrl && (
+          <Image
+            source={require("../assets/images/menuItemImagePlaceholder.png")}
+            style={styles.placeholderImage}
+          />
+        )}
       </View>
     </View>
   );
