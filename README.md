@@ -12,7 +12,7 @@ The backend is hosted on Google Cloud and all the API calls in the frontend are 
 
 For this project, I built the frontend in React-Native which I generated the boilerplate for with Expo. As requested, I built the backend in Node JS along with Koa and Knex.
 
-All of the data currently in the production database was generated using the web scraper that was built as part of this project.
+All of the data currently in the production database was generated using the web scraper that was built as part of this project. The only exception is that I created a few fake links for The Goddess and the Grocer's social profiles so that I could test the different icons.
 
 ### Backend Design
 
